@@ -1,0 +1,11 @@
+{
+  "name": "mg-explorer",
+  "author": "Tsiry Sandratraina",
+  "publish": false,
+  "dependencies": {
+    "lib": "^4.1.2",
+    "faunadb": "^2.13.0",
+    "alasql": "^0.5.6",
+    "lowercase-keys": "^2.0.0"
+  }
+}

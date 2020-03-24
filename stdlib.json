@@ -1,0 +1,6 @@
+{
+  "name": "tsiry/mg-explorer",
+  "version": "1.0.0",
+  "timeout": 10000,
+  "connector": true
+}
