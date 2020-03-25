@@ -1,12 +1,13 @@
 const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
-const fokontany = require('../repository/fokontany');
+const { search } = require('../../repository/search');
 const faunadb = require('faunadb');
-const lowercasekeys = require('lowercase-keys');
+const alasql = require('alasql/dist/alasql');
 
 /**
 * An HTTP endpoint that acts as a webhook for Custom API or Webhook request event
+* @param {string} keyword
 * @returns {object} result Your return value
 */
-module.exports = async (context) => {
-  return fokontany.find(context.params.id);
+module.exports = async (keyword) => {
+  return search(keyword);
 };

@@ -1,6 +1,6 @@
 const q = require('faunadb').query;
 const { client } = require('../client');
-const { formatFokontany } = require('../helpers/formater');
+const { formatFokontany, formatFokontanyItem } = require('../helpers/formater');
 const lowercasekeys = require('lowercase-keys');
 
 const find = async (id) => {
@@ -26,13 +26,15 @@ const find = async (id) => {
   };
 }
 
-const findAll = async () => {
-  const { data } = await client.query(
+const findAll = async (after, size = 100) => {
+  const pagination = after && size ? { after: [ q.Ref(q.Collection('fokontany'), after) ], size } : { size: 100 };
+  const result = await client.query(
     q.Paginate(
-      q.Match(q.Index('all_fokontany')),
+      q.Match(q.Index('fokontany_sort_by_ref')),
+      pagination
     )
   );
-  return formatFokontany(data);
+  return { data: formatFokontany(result.data), after: formatFokontanyItem(result.after) };
 }
 
 const count = async () => {

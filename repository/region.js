@@ -1,6 +1,6 @@
 const q = require('faunadb').query;
 const { client } = require('../client');
-const { formatRegions } = require('../helpers/formater');
+const { formatRegions, formatRegion } = require('../helpers/formater');
 const lowercasekeys = require('lowercase-keys');
 
 const find = async (id) => {
@@ -23,13 +23,15 @@ const find = async (id) => {
   }
 }
 
-const findAll = async () => {
-  const { data } = await client.query(
+const findAll = async (after, size = 100) => {
+  const pagination = after && size ? { after: [ q.Ref(q.Collection('regions'), after) ], size } : { size: 100 };
+  const result = await client.query(
     q.Paginate(
-      q.Match(q.Index('all_regions')),
+      q.Match(q.Index('regions_sort_by_ref')),
+      pagination
     )
   );
-  return formatRegions(data);
+  return { data: formatRegions(result.data), after: formatRegion(result.after) };
 }
 
 const count = async () => {

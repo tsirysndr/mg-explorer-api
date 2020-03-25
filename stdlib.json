@@ -1,6 +1,7 @@
 {
   "name": "tsiry/mg-explorer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "timeout": 10000,
-  "connector": true
+  "connector": true,
+  "events": {}
 }

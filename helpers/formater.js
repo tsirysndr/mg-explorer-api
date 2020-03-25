@@ -1,35 +1,57 @@
-const formatFokontanyItem = (item) => ({
-  id: item[2].value.id,
-  name: item[0],
-  code: item[3],
-  province: item[1],
-  region: item[6],
-  district: item[5],
-  commune: item[4],
-})
-const formatCommune = (item) => ({
-  id: item[2].value.id,
-  name: item[0],
-  code: item[3],
-  province: item[1],
-  region: item[5],
-  district: item[4],
-})
+const formatFokontanyItem = (item) => {
+  if (!item) {
+    return null
+  }
+  return {
+    id: item[0].value.id,
+    name: item[1],
+    code: item[5],
+    province: item[1],
+    region: item[4],
+    district: item[3],
+    commune: item[2],
+  }
+}
 
-const formatDistrict = (item) => ({
-  id: item[2].value.id,
-  name: item[0],
-  code: item[3],
-  province: item[1],
-  region: item[4]
-})
+const formatCommune = (item) => {
+  if (!item) {
+    return null
+  }
+  return {
+    id: item[0].value.id,
+    name: item[1],
+    code: item[5],
+    province: item[4],
+    region: item[3],
+    district: item[2],
+  }
+}
 
-const formatRegion = (item) => ({
-  id: item[2].value.id,
-  name: item[0],
-  code: item[3],
-  province: item[1],
-})
+const formatDistrict = (item) => {
+  if (!item) {
+    return null
+  }
+  return {
+    id: item[0].value.id,
+    name: item[1],
+    code: item[4],
+    province: item[3],
+    region: item[2]
+  }
+}
+
+const formatRegion = (item) => {
+  if (!item) {
+    return null
+  }
+  return {
+    id: item[0].value.id,
+    name: item[1],
+    code: item[3],
+    province: item[2],
+  }
+}
+
 
 const formatRegions = (result) => (
   result.map(item => formatRegion(item))
