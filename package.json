@@ -1,6 +1,6 @@
 {
   "name": "mg-explorer",
-  "author": "tsiry <tsiry.sndr@gmail.com>",
+  "author": "Tsiry Sandratraina",
   "publish": false,
   "dependencies": {
     "lib": "^4.1.2",
