@@ -9,6 +9,6 @@ const lowercasekeys = require('lowercase-keys');
 * @param {number} size
 * @returns {object} result Your return value
 */
-module.exports = async (after = null, size = 100) => {
+module.exports = async (after = null, size = 10) => {
   return district.findAll(after, size);
 };
